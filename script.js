@@ -20,9 +20,10 @@ let memberColl = [
     }
 
     class Member {
-        constructor (name, playClass) {
+        constructor (name, playClass, available) {
             this.name = this.getName();
             this.playClass = 1;
+            this.available = true;
         }
         //Pick random name
         getName() {
@@ -52,7 +53,8 @@ let memberColl = [
                 for (let counter = 0; counter <= maxPlayersLane-1; counter++) {
                     let randomVal = helperFnct.randomNmbr (0, 3);
                     this.lanesColl.push("Lane " + count);       
-                    this.lanesColl.push(this.playerColl[randomVal]);                                      
+                    this.lanesColl[counter] = ["lane " + count+1, this.playerColl[randomVal][0], this.playerColl[randomVal][1]] ;    
+                                                    
                 }
             }
         }
@@ -60,10 +62,11 @@ let memberColl = [
 
 
 let newGame = new Game();
-newGame.fillPlayerColl(4);
-console.log(newGame.playerColl);
-newGame.fillLanesColl(1,2);
 
+console.log(newGame.playerColl);
+newGame.fillLanesColl(1,4);
 console.log(newGame.lanesColl);
+
+
 
 }) //Final bracket
