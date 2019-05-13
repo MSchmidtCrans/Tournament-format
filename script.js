@@ -51,10 +51,9 @@ let memberColl = [
         fillLanesColl (numLanes, maxPlayersLane) {
             for (let count = 0; count <= numLanes-1; count++) {
                 for (let counter = 0; counter <= maxPlayersLane-1; counter++) {
-                    let randomVal = helperFnct.randomNmbr (0, 3);
-                    this.lanesColl.push("Lane " + count);       
-                    this.lanesColl[counter] = ["lane " + count+1, this.playerColl[randomVal][0], this.playerColl[randomVal][1]] ;    
-                                                    
+                    let randomVal = helperFnct.randomNmbr (0, 3);  
+                    let x = ["lane " + (count + 1), this.playerColl[randomVal][0], this.playerColl[randomVal][1]];   
+                    this.lanesColl.push(x);                                                    
                 }
             }
         }
@@ -64,7 +63,7 @@ let memberColl = [
 let newGame = new Game();
 
 console.log(newGame.playerColl);
-newGame.fillLanesColl(1,4);
+newGame.fillLanesColl(20,2);
 console.log(newGame.lanesColl);
 
 
