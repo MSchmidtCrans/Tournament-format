@@ -17,7 +17,8 @@ let memberColl = [];
         } 
         //Add member to members collection
         collectMembers() {
-            memberColl.push([this.name, this.playClass, this.available]);     
+            let member = {name: this.name, playClass: this.playClass, available: this.available};
+            memberColl.push(member);     
         } 
     }
 
@@ -32,28 +33,26 @@ let memberColl = [];
             let playerCount = 0;         
             while (playerCount <= numPlayers-1) {
                 let randomVal = helperFnct.randomNmbr (0, memberColl.length-1);
-                console.log(playerCount);
-                console.log(numPlayers);
                 if (!(this.playerColl.includes(memberColl[randomVal]))) {
                     this.playerColl.push(memberColl[randomVal]);
-                    playerCount++;  
+                    playerCount++; 
                 };
             }  
             }
                 
         //Fill lanes
         fillLanesColl (numLanes, maxPlayersLane) {
-            for (let count = 0; count <= numLanes-1; count++) {
-                for (let counter = 0; counter <= maxPlayersLane-1; counter++) {
-                    let randomVal = helperFnct.randomNmbr(0, 3); 
+            
+            for (let count = 0; count <= numLanes-1; count++) {  
+                let check = 0;
+                while (check < maxPlayersLane) {
+                    let randomVal = helperFnct.randomNmbr(0, (this.playerColl.length-1)); 
                     if (this.playerColl[randomVal].available === true) { 
                     let x = ["lane " + (count + 1), this.playerColl[randomVal].name];   
-                    this.lanesColl.push(x); 
-                    console.log()   
-                    this.playerColl[randomVal].available = false;
-                    } else {
-                        console.log("Speler niet beschikbaar");
-                    }                                                
+                    this.lanesColl.push(x);      
+                    this.playerColl[randomVal].available = false;               
+                    check++; 
+                    }                                            
                 }
             }
         }
@@ -73,12 +72,11 @@ let member8 = new Member('Arnoud');
 let newGame = new Game();
 
 
-newGame.fillPlayerColl(4);
-//newGame.fillLanesColl(2,2);
+newGame.fillPlayerColl(8);
+newGame.fillLanesColl(4, 2);
 
-console.log(memberColl);
 console.log(newGame.playerColl);
-//console.log(newGame.lanesColl);
+console.log(newGame.lanesColl);
 
 
 
